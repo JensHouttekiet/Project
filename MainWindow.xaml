@@ -1,0 +1,16 @@
+﻿<Window x:Class="Project.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Project"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="500">
+    <Grid>
+        <Button x:Name="Relais" Content="Relais On / Off" HorizontalAlignment="Center" VerticalAlignment="Top" Click="Relais_Click" Margin="0,253,0,0"/>
+        <ListBox x:Name="COMpoortenlijst" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="66,189,340,189"/>
+        <Button x:Name="CheckPorts" Content="Check Poorten" HorizontalAlignment="Left" Margin="73,155,0,0" VerticalAlignment="Top" Click="CheckPorts_Click"/>
+        <Button x:Name="OpenPoort" Content="Open COMPoort" HorizontalAlignment="Center" Margin="0,208,0,0" VerticalAlignment="Top" Click="OpenPoort_Click"/>
+
+    </Grid>
+</Window>
