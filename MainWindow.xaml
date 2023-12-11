@@ -8,9 +8,10 @@
         Title="MainWindow" Height="500" Width="500">
     <Grid>
         <Button x:Name="Relais" Content="Relais On / Off" HorizontalAlignment="Center" VerticalAlignment="Top" Click="Relais_Click" Margin="0,253,0,0"/>
-        <ListBox x:Name="COMpoortenlijst" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="66,189,340,189"/>
+        <ListBox x:Name="COMpoortenlijst" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="73,189,333,189"/>
         <Button x:Name="CheckPorts" Content="Check Poorten" HorizontalAlignment="Left" Margin="73,155,0,0" VerticalAlignment="Top" Click="CheckPorts_Click"/>
-        <Button x:Name="OpenPoort" Content="Open COMPoort" HorizontalAlignment="Center" Margin="0,208,0,0" VerticalAlignment="Top" Click="OpenPoort_Click"/>
+        <Button x:Name="OpenPoort" Content="Open COMPoort" HorizontalAlignment="Center" Margin="0,198,0,0" VerticalAlignment="Top" Click="OpenPoort_Click"/>
+        <Button x:Name="SluitPoort" Content="Sluit COMpoort" HorizontalAlignment="Center" Margin="0,227,0,0" VerticalAlignment="Top" Click="SluitPoort_Click"/>
 
     </Grid>
 </Window>

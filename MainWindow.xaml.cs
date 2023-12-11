@@ -21,10 +21,12 @@ namespace Project
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Relais relais;
+        private Relais relais;  // Maakt de klasse aan.
 
         bool open;          // Maakt dat de poort niet twee keer open kan.
+        bool sluit = true;         // Maakt dat de poort niet twee keer gesloten kan.
         bool keuze;         // Maakt dat de niet open kan voordat een com poort gekozen is.
+
         public MainWindow()
         {
             InitializeComponent();
@@ -33,7 +35,7 @@ namespace Project
 
         private void Relais_Click(object sender, RoutedEventArgs e)
         {
-            relais.Aan_Uit();
+            relais.Aan_Uit();   // Schakelt de relais uit en aan.
         }
 
         private void CheckPorts_Click(object sender, RoutedEventArgs e)
@@ -45,17 +47,17 @@ namespace Project
                 COMpoortenlijst.Items.Add(poort);          // Zet de poorten in de list box.
             }
             COMpoortenlijst.SelectedIndex = 0;             // Maakt zodat er zeker een poort word gekozen.
-            keuze = true;
+            keuze = true;                                  // Toont aan dat er een poort gekozen is.
         }
-        
-        public void OpenPoort_Click(object sender, RoutedEventArgs e)
+        private void OpenPoort_Click(object sender, RoutedEventArgs e)
         {
             if (keuze == true)                  // Als een com poort gekozen is zal de open knop werken.
                 if (open == false)              // Als open nog niet gedrukt werkt zal de com poort worden geopent.
                 {
-                    SerialPort serialPort = new SerialPort((string)COMpoortenlijst.SelectedItem, 9600);
-                    serialPort.Open();            // Opent de com poort.
+                    relais.Poort = (string)COMpoortenlijst.SelectedItem;    // Check welke poort je hebt aangeduidt en steekt het in var poort.
+                    relais.Open();                // Opent de com poort.
                     open = true;                  // Maakt dat de open poort niet opnieuw kan geopent worden voordat hij gesloten is.
+                    sluit = false;                // Maakt dat de com poort niet opnieuw kan gesloten worden.
                 }
                 else
                 {
@@ -63,6 +65,20 @@ namespace Project
                 }
                 else
                     MessageBox.Show("Kies een COM poort.", "ERROR", MessageBoxButton.OK , MessageBoxImage.Exclamation);  // Maakt dat gebruiker weet dat je nog een poort moet kiezen.
+        }
+
+        private void SluitPoort_Click(object sender, RoutedEventArgs e)
+        {
+            if (sluit == false)
+            {
+                relais.Sluit();             // Sluit de com poort.
+                open = false;               // Maakt dat de com poort weer open kan.
+                sluit = true;               // Maakt dat de com poort niet opnieuw kan gesloten worden.
+            }
+            else
+            {
+                MessageBox.Show("COM poort is al gesloten.", "ERROR", MessageBoxButton.OK, MessageBoxImage.Exclamation); // Maakt dat gebruiker weet dat com poort al gesloten is.
+            }
         }
     }
 }
